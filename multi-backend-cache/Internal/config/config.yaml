@@ -1,0 +1,22 @@
+IsTenantBased: false
+NumberOfTenants: "3"
+TenantIDs:
+  - tenant1
+  - tenant2
+  - tenant3
+CacheSystems:
+  - inmemory
+  - redis
+  - memcache
+DefaultTTL: 60
+MemoryUsagePercentage: 0.15
+# IP: "34.234.207.91"
+IP: "localhost"
+redis:
+  address: "redis:6379"
+  password: ""
+  database: 0
+
+memcache:
+  address: "memcached:11211"
+  defaultTTL: 60

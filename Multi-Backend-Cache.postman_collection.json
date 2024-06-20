@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "94e33dbb-c424-4031-8337-e00d83cb3ab4",
+		"name": "Multi-Backend-Cache",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15654441"
+	},
+	"item": [
+		{
+			"name": "get cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cache/dhoni?system=redis",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cache",
+						"dhoni"
+					],
+					"query": [
+						{
+							"key": "system",
+							"value": "redis"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "set cache",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"method": "DELETE",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Clear",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cache/clear?cache=inmemory",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cache",
+						"clear"
+					],
+					"query": [
+						{
+							"key": "cache",
+							"value": "inmemory"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "cacheSystem",
+			"value": "memcache"
+		}
+	]
+}

@@ -1,0 +1,71 @@
+version: '3.8'
+
+networks:
+  caching_system:
+    driver: bridge
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - caching_system
+    container_name: redis
+
+  memcached:
+    image: memcached:latest
+    ports:
+      - "11211:11211"
+    volumes:
+      - memcached-data:/data
+    networks:
+      - caching_system
+    container_name: memcached
+
+
+  go-service:
+    build:
+      context: .
+      dockerfile: dockerFile
+    command: [ "go", "run", "router.go" ]
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+      - memcached
+    networks:
+      - caching_system
+    container_name: go-service
+  
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - caching_system
+    container_name: prometheus
+  
+  grafana:
+      image: grafana/grafana
+      container_name: grafana
+      ports:
+        - "3002:3000"
+      environment:
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+      volumes:
+        - grafana-data:/var/lib/grafana
+      networks:
+        - caching_system
+
+
+volumes:
+  redis-data:
+  memcached-data:
+  grafana-data:
