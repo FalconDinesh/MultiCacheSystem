@@ -81,7 +81,7 @@ multi-backend-cache/
 
 1. Clone the repository:
    \`\`\`sh
-   git clone https://github.com/sabarivasan007/MultiBackendCacheSystem
+   git clone https://github.com/FalconDinesh/MultiCacheSystem
    cd multi-backend-cache
    \`\`\`
 
